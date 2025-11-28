@@ -68,6 +68,50 @@ class bstGenerico{
         }
     }
 
+    void eliminar(T dato){
+        if(raiz == NULL) return NULL;
+        Nodo* it = raiz;
+        Nodo* padre;
+        char hijo = 'r';
+        while(it->dato != dato){
+            padre = it;
+            if(dato < it->dato){
+                it = it->left;
+                hijo = 'l';
+            }else{
+                it = it->right;
+                hijo = 'r';
+            }
+        }
+        if(it->right == NULL && it->left == NULL){
+            if(hijo == 'l'){
+                delete padre->left; padre->left = NULL;
+            }else{
+                delete padre->right; padre->right = NULL;
+            } 
+        }
+        else if(it->right == NULL && it->left != NULL && it->left->left == NULL && it->left->right-> == NULL){
+            it->dato = it->left->dato;
+            delete it->left;
+            it->left = NULL;
+        }
+        else if(it->right != NULL && it->left == NULL && it->right->left == NULL && it->right->right-> == NULL){
+            it->dato = it->right->dato;
+            delete it->right;
+            it->right = NULL;
+        }else if(it->right != NULL && it->left != NULL){
+            Nodo* eliminar = it;
+            it = it->right;
+            while(it->left != NULL){
+                padre = it;
+                it = it->left;
+            }
+            eliminar->dato = it->dato;
+            delete padre->left;
+            padre->left = NULL;
+        }
+    }
+
     void imprimir(){
         imprimir(this->raiz);
     }

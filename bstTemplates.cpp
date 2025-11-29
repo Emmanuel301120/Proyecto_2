@@ -35,7 +35,7 @@ class Nodo{
 template <typename T>
 class bstGenerico{
     public:
-    Nodo<T>* raiz;
+    Nodo* raiz;
 
     bstGenerico(){
         this->raiz = nullptr;

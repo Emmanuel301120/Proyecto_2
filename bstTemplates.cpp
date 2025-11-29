@@ -8,13 +8,16 @@ class Nodo{
     public:
     //bool color = false; //Nodos negros = false Nodos rojos = true
     T dato;
+    string clave;
     Nodo<T>* left;
     Nodo<T>* right;
+    
 
-    Nodo(T& dato){
+    Nodo(T& dato, string clave){
         this->dato = dato;
         this->right = nullptr;
         this->left = nullptr;
+        this->clave = clave;
     }
 
     string toString(){

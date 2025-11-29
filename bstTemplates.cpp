@@ -20,6 +20,16 @@ class Nodo{
         this->clave = clave;
     }
 
+    void search(Nodo* raiz, string key, searchDatos& sd){
+        if(raiz == NULL || sd.encontrado)return;
+        if(raiz->clave == key){
+            sd.nodoEncontrado = raiz;
+            sd.encontrado = true;
+        }
+        search(raiz->left, key, sd);
+        search(raiz->right, key, sd);
+    }
+
     string toString(){
         stringstream ss;
         ss<<dato;

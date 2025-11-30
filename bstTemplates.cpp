@@ -1,7 +1,10 @@
+#ifndef BSTTEMPLATES_H
+#define BSTTEMPLATES_H
 #include <iostream>
 #include <sstream>
-#include "searchDatos.h"
 #include "Nodo.h"
+#include "searchDatos.h"
+
 
 using namespace std;
 
@@ -53,7 +56,7 @@ class Cola{
     }
 
     int length(){
-        int elementos= = 0;
+        int elementos = 0;
         if(inicio==nullptr){
             return 0;
         }
@@ -69,21 +72,22 @@ class Cola{
 };
 
 template <typename T>
-class bstGenerico{
+class bstTemplates{
     public:
     Nodo<T>* raiz;
 
-    bstGenerico(){
+    bstTemplates(){
         this->raiz = nullptr;
     }
 
-    bstGenerico(T dato){
+    bstTemplates(T dato){
         this->raiz = new Nodo<T>(dato, "");
     }
 
-    void insert(T dato){
+    virtual Nodo<T>* insert(T dato, string clave){
         if(raiz==nullptr){
-            raiz = new Nodo<T>(dato);
+            raiz = new Nodo<T>(dato, clave);
+            return raiz;
         }else{
             Nodo<T>* temp = raiz;
             Nodo<T>* padre = nullptr;
@@ -104,6 +108,7 @@ class bstGenerico{
             }else{
                 padre->left = temp;
             }    
+            return temp;
         }
     }
 
@@ -117,7 +122,7 @@ class bstGenerico{
         search(raiz->right, key, sd);
     }
 
-    void eliminar(T dato){
+    virtual void eliminar(T dato){
         if(raiz == NULL) return;
         Nodo<T>* it = raiz;
         Nodo<T>* padre = nullptr;
@@ -240,83 +245,4 @@ class bstGenerico{
     }
 
 };
-
-class Vehiculo{
-    public:
-    string color;
-    int ruedas;
-    int puertas;
-
-    Vehiculo(){
-        color = "";
-        ruedas = 0;
-        puertas = 0;
-    }
-
-    Vehiculo(string color, int ruedas, int puertas){
-        this->color = color;
-        this->ruedas = ruedas;
-        this->puertas = puertas;
-    }
-
-    bool operator>(Vehiculo& v){
-        if(this->color>v.color){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    string toString(){
-        stringstream ss;
-        ss<<"Color: "<<color<<" - Ruedas: "<<ruedas<<" - Puertas: "<<puertas;
-        return ss.str();
-    }
-
-    friend ostream& operator<<(ostream& os, Vehiculo& car){
-        os<<car.toString();
-        return os;
-    }
-};
-
-int main(){
-    int num1 = 50;
-    int num2 = 60;
-    int num3 = 30;
-    int num4 = 40;
-
-    bstGenerico<int>* bstInt = new bstGenerico<int>();
-    bstInt->insert(num1);
-    bstInt->insert(num2);
-    bstInt->insert(num3);
-    bstInt->insert(num4);
-    bstInt->imprimir();
-    cout<<endl;
-
-    string cadena1 = "1Hola";
-    string cadena2 = "2Hola";
-    string cadena3 = "4Hola";
-    string cadena4 = "3Hola";
-    
-    bstGenerico<string>* bstStr = new bstGenerico<string>();
-    bstStr->insert(cadena1);
-    bstStr->insert(cadena2);
-    bstStr->insert(cadena3);
-    bstStr->insert(cadena4);
-    bstStr->imprimir();
-    cout<<endl;
-
-    Vehiculo carro1 = Vehiculo("Rojo", 2, 4);
-    Vehiculo carro2 = Vehiculo("Verde", 4, 5);
-    Vehiculo carro3 = Vehiculo("Azul", 2, 5);
-    Vehiculo carro4 = Vehiculo("Negro", 4, 4);
-
-    bstGenerico<Vehiculo>* bstTemp = new bstGenerico<Vehiculo>();
-    bstTemp->insert(carro1);
-    bstTemp->insert(carro2);
-    bstTemp->insert(carro3);
-    bstTemp->insert(carro4);
-    bstTemp->imprimir();
-    bstTemp->porNiveles();
-    cout<<endl;
-}
+#endif

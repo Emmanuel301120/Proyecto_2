@@ -11,7 +11,7 @@ class Cola{
     Nodo<T>* inicio;
     Nodo<T>* fin;
 
-    cola(){
+    Cola(){
         this->inicio = nullptr;
         this->fin = nullptr;
     }
@@ -21,28 +21,49 @@ class Cola{
         if(inicio==nullptr){
             inicio = nuevo;
             fin = nuevo;
+            //cout<<"Inicio agregado"<<endl;
         }else{
             fin->right = nuevo;
             fin = fin->right;
+            //cout<<"Fin agregado"<<endl;
         }
     }
 
     Nodo<T>* pop(){
-        Nodo<T>* temp = inicio;
-        if(temp == nullptr){
+        if (inicio == nullptr){
             return nullptr;
-        }else{
-            inicio = inicio->right;
-            return temp;
         }
+        Nodo<T>* temp = inicio;
+        inicio = inicio->right;
+        if (inicio == nullptr) {
+            fin = nullptr;
+        }
+        temp->right = nullptr;
+        temp->left = nullptr;
+        return temp;
     }
 
     bool empty(){
         if(inicio == nullptr ){
             return true;
         }else{
+            if(inicio->dato == nullptr) return true;
             return false;
         }
+    }
+
+    int length(){
+        int elementos= = 0;
+        if(inicio==nullptr){
+            return 0;
+        }
+        Nodo<T>* temp = inicio;
+        while (temp != nullptr)
+        {
+            elementos ++;
+            temp = temp->right;
+        }
+        return elementos;
     }
 
 };
@@ -199,23 +220,23 @@ class bstGenerico{
         }
     }
 
-    //template<typename T>
-    void porNiveles(){
-        Cola<T> cola = Cola<T>();
-        Nodo<T>* temp = raiz;
-        cola.push(temp);
-        while (temp != nullptr){
-            temp=cola.pop();
-            cout<<*temp<<endl;
 
-            if(temp->left != nullptr){
-                cola.push(temp->left);
-            }
-            if(temp->right != nullptr){
-                cola.push(temp->right);
-            }
+    //template<typename T>
+    void porNiveles() {
+        int elementos;
+        Cola<T> cola;
+        Nodo<T>* temp = cola.inicio;
+        if (temp == nullptr){
+            cola.push(raiz);
         }
-        
+
+        elementos = cola.length();
+
+        while (temp!=nullptr) {
+            cout<<endl;
+            cout<<*temp;
+            temp = nullptr;
+        }
     }
 
 };
@@ -295,7 +316,7 @@ int main(){
     bstTemp->insert(carro2);
     bstTemp->insert(carro3);
     bstTemp->insert(carro4);
-    //bstTemp->porNiveles();
     bstTemp->imprimir();
+    bstTemp->porNiveles();
     cout<<endl;
 }

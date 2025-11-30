@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sstream>
+#include "searchDatos.h"
 
 using namespace std;
 
@@ -19,6 +20,14 @@ class Nodo{
         this->left = nullptr;
         this->clave = clave;
     }
+
+    Nodo(T& dato){
+        this->dato = dato;
+        this->right = nullptr;
+        this->left = nullptr;
+        clave = "";
+    }
+
 
     
 
@@ -44,7 +53,7 @@ class bstGenerico{
     }
 
     bstGenerico(T dato){
-        this->raiz = new Nodo<T>(dato);
+        this->raiz = new Nodo<T>(dato, "");
     }
 
     void insert(T dato){
@@ -73,7 +82,7 @@ class bstGenerico{
         }
     }
 
-    void search(Nodo* raiz, string key, searchDatos& sd){
+    void search(Nodo<T>* raiz, string key, searchDatos& sd){
         if(raiz == NULL || sd.encontrado)return;
         if(raiz->clave == key){
             sd.nodoEncontrado = raiz;

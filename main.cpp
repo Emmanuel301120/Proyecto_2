@@ -13,7 +13,7 @@ int main(){
     bstInt->insert(num2,"");
     bstInt->insert(num3,"");
     bstInt->insert(num4,"");
-    bstInt->imprimir();
+    bstInt->imprimirPorNiveles();
     cout<<endl;
 
     string cadena1 = "1Hola";
@@ -26,7 +26,7 @@ int main(){
     bstStr->insert(cadena2,"");
     bstStr->insert(cadena3,"");
     bstStr->insert(cadena4,"");
-    bstStr->imprimir();
+    bstStr->imprimirPorNiveles();
     cout<<endl;
 
     Vehiculo carro1 = Vehiculo("Rojo", 2, 4);
@@ -39,7 +39,6 @@ int main(){
     bstTemp->insert(carro2,"");
     bstTemp->insert(carro3,"");
     bstTemp->insert(carro4,"");
-    bstTemp->imprimir();
-    bstTemp->porNiveles();
+    bstTemp->imprimirPorNiveles();
     cout<<endl;
 }

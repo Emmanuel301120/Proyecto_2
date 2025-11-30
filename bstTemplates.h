@@ -2,6 +2,7 @@
 #define BSTTEMPLATES_H
 #include <iostream>
 #include <sstream>
+
 #include "Nodo.h"
 #include "searchDatos.h"
 
@@ -9,66 +10,68 @@
 using namespace std;
 
 template <typename T>
-class Cola{
-    public:
-    Nodo<T>* inicio;
-    Nodo<T>* fin;
+class NodoCola {
+public:
+    Nodo<T>* dato;
+    NodoCola<T>* siguiente;
 
+    NodoCola(Nodo<T>* dato){
+        this->dato = dato; 
+        this->siguiente = nullptr;
+    }
+};
+
+template <typename T>
+class Cola {
+private:
+    NodoCola<T>* inicio;
+    NodoCola<T>* fin;
+
+public:
     Cola(){
-        this->inicio = nullptr;
+        this->inicio = nullptr; 
         this->fin = nullptr;
     }
 
-    void push(Nodo<T>* dato){
-        Nodo<T>* nuevo = dato;
-        if(inicio==nullptr){
-            inicio = nuevo;
+    void push(Nodo<T>* dato) {
+        NodoCola<T>* nuevo = new NodoCola<T>(dato);
+        if (!fin) {
+            inicio = fin = nuevo;
+        } else {
+            fin->siguiente = nuevo;
             fin = nuevo;
-            //cout<<"Inicio agregado"<<endl;
-        }else{
-            fin->right = nuevo;
-            fin = fin->right;
-            //cout<<"Fin agregado"<<endl;
         }
     }
 
-    Nodo<T>* pop(){
-        if (inicio == nullptr){
+    Nodo<T>* pop() {
+        if (!inicio){
             return nullptr;
         }
-        Nodo<T>* temp = inicio;
-        inicio = inicio->right;
-        if (inicio == nullptr) {
-            fin = nullptr;
-        }
-        temp->right = nullptr;
-        temp->left = nullptr;
-        return temp;
+        NodoCola<T>* temp = inicio;
+        Nodo<T>* dato = temp->dato;
+        inicio = inicio->siguiente;
+        if (!inicio){
+          fin = nullptr;  
+        } 
+        delete temp;
+        return dato;
     }
 
-    bool empty(){
-        if(inicio == nullptr ){
+    bool empty() const {
+        if(inicio == nullptr){
             return true;
-        }else{
-            if(inicio->dato == nullptr) return true;
-            return false;
         }
     }
 
     int length(){
-        int elementos = 0;
-        if(inicio==nullptr){
-            return 0;
-        }
-        Nodo<T>* temp = inicio;
-        while (temp != nullptr)
-        {
-            elementos ++;
-            temp = temp->right;
-        }
-        return elementos;
+    int contador = 0;
+    NodoCola<T>* actual = inicio;
+    while (actual != nullptr) {
+        contador++;
+        actual = actual->siguiente;
     }
-
+    return contador;
+}
 };
 
 template <typename T>
@@ -186,10 +189,6 @@ class bstTemplates{
 
     void imprimir(){
         inorder(this->raiz);
-        /*cout<<endl;
-        preorder(this->raiz);
-        cout<<endl;
-        postorder(this->raiz);*/
     }
 
     void inorder(Nodo<T>* inicio){
@@ -225,23 +224,29 @@ class bstTemplates{
         }
     }
 
+    void imprimirPorNiveles(){
+    if (raiz==nullptr) return;
 
-    //template<typename T>
-    void porNiveles() {
-        int elementos;
-        Cola<T> cola;
-        Nodo<T>* temp = cola.inicio;
-        if (temp == nullptr){
-            cola.push(raiz);
+    Cola<T> cola;
+    cola.push(raiz);
+
+    while (!(cola.empty())){
+        int numNiveles = cola.length();
+
+        for (int i = 0; i < numNiveles; ++i) {
+            Nodo<T>* actual = cola.pop();
+            cout << actual->dato << "//";
+
+            if (actual->left){
+                cola.push(actual->left);
+            }
+            if (actual->right){
+                cola.push(actual->right);
+            }
         }
 
-        elementos = cola.length();
-
-        while (temp!=nullptr) {
-            cout<<endl;
-            cout<<*temp;
-            temp = nullptr;
-        }
+        cout<<endl;
+    }
     }
 
 };

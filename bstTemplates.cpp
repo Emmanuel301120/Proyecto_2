@@ -114,18 +114,46 @@ class bstGenerico{
         }
     }
 
+
+
     void imprimir(){
-        imprimir(this->raiz);
+        inorder(this->raiz);
+        /*cout<<endl;
+        preorder(this->raiz);
+        cout<<endl;
+        postorder(this->raiz);*/
     }
 
-    void imprimir(Nodo<T>* inicio){
+    void inorder(Nodo<T>* inicio){
         if(inicio==nullptr){
             return;
         }else{
             Nodo<T>* temp = inicio;
-            imprimir(temp->left);
+            inorder(temp->left);
             cout<<temp->dato<<"//";
-            imprimir(temp->right);
+            inorder(temp->right);
+        }
+    }
+
+    void preorder(Nodo<T>* inicio){
+        if(inicio==nullptr){
+            return;
+        }else{
+            Nodo<T>* temp = inicio;
+            cout<<temp->dato<<"//";
+            preorder(temp->left);
+            preorder(temp->right);
+        }
+    }
+
+    void postorder(Nodo<T>* inicio){
+        if(inicio==nullptr){
+            return;
+        }else{
+            Nodo<T>* temp = inicio;
+            postorder(temp->left);
+            postorder(temp->right);
+            cout<<temp->dato<<"//";
         }
     }
 

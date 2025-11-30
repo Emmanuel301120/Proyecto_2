@@ -6,6 +6,48 @@
 using namespace std;
 
 template <typename T>
+class Cola{
+    public:
+    Nodo<T>* inicio;
+    Nodo<T>* fin;
+
+    cola(){
+        this->inicio = nullptr;
+        this->fin = nullptr;
+    }
+
+    void push(Nodo<T>* dato){
+        Nodo<T>* nuevo = dato;
+        if(inicio==nullptr){
+            inicio = nuevo;
+            fin = nuevo;
+        }else{
+            fin->right = nuevo;
+            fin = fin->right;
+        }
+    }
+
+    Nodo<T>* pop(){
+        Nodo<T>* temp = inicio;
+        if(temp == nullptr){
+            return nullptr;
+        }else{
+            inicio = inicio->right;
+            return temp;
+        }
+    }
+
+    bool empty(){
+        if(inicio == nullptr ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+};
+
+template <typename T>
 class bstGenerico{
     public:
     Nodo<T>* raiz;
@@ -157,6 +199,25 @@ class bstGenerico{
         }
     }
 
+    //template<typename T>
+    void porNiveles(){
+        Cola<T> cola = Cola<T>();
+        Nodo<T>* temp = raiz;
+        cola.push(temp);
+        while (temp != nullptr){
+            temp=cola.pop();
+            cout<<*temp<<endl;
+
+            if(temp->left != nullptr){
+                cola.push(temp->left);
+            }
+            if(temp->right != nullptr){
+                cola.push(temp->right);
+            }
+        }
+        
+    }
+
 };
 
 class Vehiculo{
@@ -234,7 +295,7 @@ int main(){
     bstTemp->insert(carro2);
     bstTemp->insert(carro3);
     bstTemp->insert(carro4);
-
+    //bstTemp->porNiveles();
     bstTemp->imprimir();
     cout<<endl;
 }

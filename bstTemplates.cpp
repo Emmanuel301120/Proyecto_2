@@ -84,11 +84,11 @@ class bstGenerico{
     }
 
     void eliminar(T dato){
-        if(raiz == NULL) return NULL;
+        if(raiz == NULL) return;
         Nodo* it = raiz;
-        Nodo* padre;
+        Nodo* padre = nullptr;
         char hijo = 'r';
-        while(it->dato != dato){
+        while(it != nullptr && it->dato != dato){
             padre = it;
             if(dato < it->dato){
                 it = it->left;
@@ -98,32 +98,48 @@ class bstGenerico{
                 hijo = 'r';
             }
         }
+        if(it == nullptr) return; 
+    
         if(it->right == NULL && it->left == NULL){
-            if(hijo == 'l'){
-                delete padre->left; padre->left = NULL;
+            if(padre != nullptr){
+                if(hijo == 'l'){
+                    delete padre->left; padre->left = NULL;
+                }else{
+                    delete padre->right; padre->right = NULL;
+                }
             }else{
-                delete padre->right; padre->right = NULL;
-            } 
+                delete raiz; raiz = NULL;
+            }
         }
-        else if(it->right == NULL && it->left != NULL && it->left->left == NULL && it->left->right-> == NULL){
+            
+        else if(it->right == NULL && it->left != NULL && it->left->left == NULL && it->left->right == NULL){
             it->dato = it->left->dato;
             delete it->left;
             it->left = NULL;
         }
-        else if(it->right != NULL && it->left == NULL && it->right->left == NULL && it->right->right-> == NULL){
+
+        else if(it->right != NULL && it->left == NULL && it->right->left == NULL && it->right->right == NULL){
             it->dato = it->right->dato;
             delete it->right;
             it->right = NULL;
-        }else if(it->right != NULL && it->left != NULL){
+        }
+
+        else if(it->right != NULL && it->left != NULL){
             Nodo* eliminar = it;
+            Nodo* padreSucesor = it;
             it = it->right;
             while(it->left != NULL){
-                padre = it;
+                padreSucesor = it;
                 it = it->left;
             }
             eliminar->dato = it->dato;
-            delete padre->left;
-            padre->left = NULL;
+    
+            if(padreSucesor->left == it){
+                padreSucesor->left = it->right;
+            }else{
+                padreSucesor->right = it->right;
+            }
+            delete it;
         }
     }
 

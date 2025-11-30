@@ -1,7 +1,6 @@
 #ifndef NODO_H
 #define NODO_H
 #include <string>
-#include "arbolRB.h"
 #include "searchDatos.h"
 using namespace std;
 

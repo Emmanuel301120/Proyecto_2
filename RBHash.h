@@ -3,6 +3,7 @@
 #include <string>
 #include "arbolRB.h"
 #include "searchDatos.h"
+#include "Nodo.h"
 using namespace std;
 
 template <typename T>
@@ -19,14 +20,13 @@ class RBHash{
     }
 
     T& operator[](string clave){
-        searchDatos sd;
+        searchDatos<T> sd;
         (arbol.search(arbol.raiz, clave, sd));
         if(sd.encontrado){
             return (sd.nodoEncontrado)->dato;
         }else{
-            Nodo<T>* nuevo = new Nodo(T(), clave);
-            arbol.insert(nuevo);
-            return nuevo->dato;
+            Nodo<T>* insertado = arbol.insert(T(), clave);
+            return insertado->dato;
         }
 
     }

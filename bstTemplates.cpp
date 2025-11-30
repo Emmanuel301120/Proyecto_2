@@ -1,38 +1,9 @@
 #include <iostream>
 #include <sstream>
+#include "searchDatos.h"
+#include "Nodo.h"
 
 using namespace std;
-
-template <typename T>
-class Nodo{
-    public:
-    //bool color = false; //Nodos negros = false Nodos rojos = true
-    T dato;
-    string clave;
-    Nodo<T>* left;
-    Nodo<T>* right;
-    
-
-    Nodo(T& dato, string clave){
-        this->dato = dato;
-        this->right = nullptr;
-        this->left = nullptr;
-        this->clave = clave;
-    }
-
-    
-
-    string toString(){
-        stringstream ss;
-        ss<<dato;
-        return ss.str();
-    }
-
-    friend ostream& operator<<(ostream& os, Nodo& nd ){
-    os << nd.toString();
-    return os;
-  }
-};
 
 template <typename T>
 class bstGenerico{
@@ -44,7 +15,7 @@ class bstGenerico{
     }
 
     bstGenerico(T dato){
-        this->raiz = new Nodo<T>(dato);
+        this->raiz = new Nodo<T>(dato, "");
     }
 
     void insert(T dato){
@@ -73,7 +44,7 @@ class bstGenerico{
         }
     }
 
-    void search(Nodo* raiz, string key, searchDatos& sd){
+    void search(Nodo<T>* raiz, string key, searchDatos<T>& sd){
         if(raiz == NULL || sd.encontrado)return;
         if(raiz->clave == key){
             sd.nodoEncontrado = raiz;
@@ -85,8 +56,8 @@ class bstGenerico{
 
     void eliminar(T dato){
         if(raiz == NULL) return;
-        Nodo* it = raiz;
-        Nodo* padre = nullptr;
+        Nodo<T>* it = raiz;
+        Nodo<T>* padre = nullptr;
         char hijo = 'r';
         while(it != nullptr && it->dato != dato){
             padre = it;
@@ -125,8 +96,8 @@ class bstGenerico{
         }
 
         else if(it->right != NULL && it->left != NULL){
-            Nodo* eliminar = it;
-            Nodo* padreSucesor = it;
+            Nodo<T>* eliminar = it;
+            Nodo<T>* padreSucesor = it;
             it = it->right;
             while(it->left != NULL){
                 padreSucesor = it;

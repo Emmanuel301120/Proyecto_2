@@ -11,7 +11,6 @@ class RBHash{
     T dato;
     
     public:
-    bool encontrado = false;
     arbolRB<T>* arbol;
 
     RBHash(){}

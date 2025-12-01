@@ -3,5 +3,6 @@ ifeq ($(OS),Windows_NT)
 endif
 
 all:
+	cls
 	$(COMPILE)
 	Proyecto2.exe

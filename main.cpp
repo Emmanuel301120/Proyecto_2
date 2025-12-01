@@ -18,6 +18,12 @@ int main(){
     int num10 = 100;
     int num11 = 110;
     int num12 = 120;
+
+    Vehiculo carroToy = Vehiculo("Rojo", 4, 4);
+    RBHash myHash(Vehiculo v);
+    myHash["toyota"] = carroToy;
+    Vehiculo* carroSus = myHash["toyota"];
+    
     
     cout<<"Pruebas para BST generico: "<< endl;
 

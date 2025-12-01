@@ -1,3 +1,5 @@
+#ifndef VEHICULO_H
+#define VEHICULO_H
 class Vehiculo{
     public:
     string color;
@@ -50,3 +52,4 @@ class Vehiculo{
         return os;
     }
 };
+#endif

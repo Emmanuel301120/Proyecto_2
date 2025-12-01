@@ -1,14 +1,24 @@
 #include "bstTemplates.h"
+#include "arbolRB.h"
 #include "Vehiculo.h"
 #include "RBHash.h"
 
 using namespace std;
 
 int main(){
-    int num1 = 50;
-    int num2 = 60;
+    int num1 = 10;
+    int num2 = 20;
     int num3 = 30;
     int num4 = 40;
+    int num5 = 50;
+    int num6 = 60;
+    int num7 = 70;
+    int num8 = 80;
+    int num9 = 90;
+    int num10 = 100;
+    int num11 = 110;
+    int num12 = 120;
+    
 
     bstTemplates<int>* bstInt = new bstTemplates<int>();
     bstInt->insert(num1,"");
@@ -44,4 +54,9 @@ int main(){
     bstTemp->imprimirPorNiveles();
     cout<<endl;
 
+    arbolRB<int> rbt = arbolRB<int>();
+    rbt.insert(num5,"Brazil");
+    rbt.insert(num4,"Argentina");
+    rbt.insert(num3,"Huruguai");
+    rbt.imprimirPorNiveles();
 }

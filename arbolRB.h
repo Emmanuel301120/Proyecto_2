@@ -236,11 +236,6 @@ class arbolRB : public bstTemplates<T>{
             ajustar = this->raiz;
         }
     }
-
-
     
-
-   
-
 };
 #endif

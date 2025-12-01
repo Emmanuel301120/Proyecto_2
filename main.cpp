@@ -2,6 +2,8 @@
 #include "Vehiculo.h"
 #include "RBHash.h"
 
+using namespace std;
+
 int main(){
     int num1 = 50;
     int num2 = 60;
@@ -41,4 +43,5 @@ int main(){
     bstTemp->insert(carro4,"");
     bstTemp->imprimirPorNiveles();
     cout<<endl;
+
 }

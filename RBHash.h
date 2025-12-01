@@ -11,6 +11,7 @@ class RBHash{
     T dato;
     
     public:
+    bool encontrado = false;
     arbolRB<T>* arbol;
 
     RBHash(){}
@@ -20,11 +21,11 @@ class RBHash{
 
     T& operator[](string clave){
         searchDatos<T> sd;
-        (arbol.search(arbol.raiz, clave, sd));
+        arbol->search(arbol->raiz, clave, sd);
         if(sd.encontrado){
             return (sd.nodoEncontrado)->dato;
         }else{
-            Nodo<T>* insertado = arbol.insert(T(), clave);
+            Nodo<T>* insertado = arbol->insert(T(), clave);
             return insertado->dato;
         }
 

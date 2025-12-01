@@ -43,7 +43,7 @@ class Vehiculo{
 
     string toString(){
         stringstream ss;
-        ss<<"Color: "<<color<<" - Ruedas: "<<ruedas<<" - Puertas: "<<puertas;
+        ss<<"Color: "<<color<<"-Ruedas: "<<ruedas<<"-Puertas: "<<puertas;
         return ss.str();
     }
 

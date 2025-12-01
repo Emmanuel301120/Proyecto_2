@@ -188,7 +188,14 @@ class bstTemplates{
 
 
     void imprimir(){
+        cout<<endl<<"Inorder: "<<endl;
         inorder(this->raiz);
+        cout<<endl<<endl<<"Preorder: "<<endl;
+        preorder(this->raiz);
+        cout<<endl<<endl<<"Postorder: "<<endl;
+        postorder(this->raiz);
+        cout<<endl<<endl<<"Por niveles: "<<endl;
+        imprimirPorNiveles();
     }
 
     void inorder(Nodo<T>* inicio){

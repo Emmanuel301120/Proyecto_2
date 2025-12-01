@@ -19,10 +19,7 @@ int main(){
     int num11 = 110;
     int num12 = 120;
 
-    Vehiculo carroToy = Vehiculo("Rojo", 4, 4);
-    RBHash myHash(Vehiculo v);
-    myHash["toyota"] = carroToy;
-    Vehiculo* carroSus = myHash["toyota"];
+    
     
     
     cout<<"Pruebas para BST generico: "<< endl;
@@ -86,6 +83,7 @@ int main(){
     Vehiculo carro10 = Vehiculo("Cafe", 4, 5);
     Vehiculo carro11 = Vehiculo("Celeste", 2, 5);
     Vehiculo carro12 = Vehiculo("Turquesa", 4, 4);
+    Vehiculo carroToy = Vehiculo("Rojo", 4, 4);
 
     cout<<endl<<"BST generico de Vehiculos: "<< endl;
     bstTemplates<Vehiculo>* bstTemp = new bstTemplates<Vehiculo>();
@@ -152,5 +150,11 @@ int main(){
     rbtVehivulos.insert(carro10,"Salvador");
     rbtVehivulos.insert(carro11,"Ecuador");
     rbtVehivulos.insert(carro12,"Cuba");
+
+    RBHash myHash(Vehiculo v);
+    myHash.arbol(rbtVehivulos);
+    myHash["toyota"] = carroToy;
+    Vehiculo* carro1997 = myHash["toyota"];
+    
     rbtVehivulos.imprimirPorNiveles();
 }

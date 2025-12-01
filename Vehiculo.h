@@ -7,7 +7,7 @@ class Vehiculo{
     int puertas;
 
     Vehiculo(){
-        color = "";
+        color = "Default";
         ruedas = 0;
         puertas = 0;
     }

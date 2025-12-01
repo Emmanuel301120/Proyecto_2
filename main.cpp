@@ -18,13 +18,10 @@ int main(){
     int num10 = 100;
     int num11 = 110;
     int num12 = 120;
+    
+    cout<<"Pruebas para BST generico: "<<endl<<endl;
 
-    
-    
-    
-    cout<<"Pruebas para BST generico: "<< endl;
-
-    cout<<endl<<"BST generico de enteros: "<< endl;
+    cout<<endl<<"BST generico de enteros: "<<endl<<endl;
     bstTemplates<int>* bstInt = new bstTemplates<int>();
     bstInt->insert(num5,"");
     bstInt->insert(num6,"");
@@ -54,7 +51,7 @@ int main(){
     string cadena11 = "Kilometro";
     string cadena12 = "Limon";
 
-    cout<<endl<<"BST generico de Strings: "<< endl;
+    cout<<endl<<"BST generico de Strings: "<<endl<<endl;
     bstTemplates<string>* bstStr = new bstTemplates<string>();
     bstStr->insert(cadena5,"");
     bstStr->insert(cadena6,"");
@@ -85,7 +82,7 @@ int main(){
     Vehiculo carro12 = Vehiculo("Turquesa", 4, 4);
     Vehiculo carroToy = Vehiculo("Rojo", 4, 4);
 
-    cout<<endl<<"BST generico de Vehiculos: "<< endl;
+    cout<<endl<<"BST generico de Vehiculos: "<<endl<<endl;
     bstTemplates<Vehiculo>* bstTemp = new bstTemplates<Vehiculo>();
     bstTemp->insert(carro1,"");
     bstTemp->insert(carro2,"");
@@ -102,9 +99,9 @@ int main(){
     bstTemp->imprimir();
     cout<<endl;
 
-    cout<<"Pruebas para RBT generico: "<< endl;
+    cout<<"Pruebas para RBT generico: "<<endl<<endl;
 
-    cout<<endl<<"RBT generico de enteros: "<< endl;
+    cout<<endl<<"RBT generico de enteros: "<<endl<<endl;
     arbolRB<int> rbtInt = arbolRB<int>();
     rbtInt.insert(num1,"Brazil");
     rbtInt.insert(num2,"Argentina");
@@ -120,7 +117,7 @@ int main(){
     rbtInt.insert(num12,"Cuba");
     rbtInt.imprimirPorNiveles();
 
-    cout<<endl<<"RBT generico de Strings: "<< endl;
+    cout<<endl<<"RBT generico de Strings: "<<endl<<endl;
     arbolRB<string> rbtStrin = arbolRB<string>();
     rbtStrin.insert(cadena1,"Brazil");
     rbtStrin.insert(cadena2,"Argentina");
@@ -136,7 +133,7 @@ int main(){
     rbtStrin.insert(cadena12,"Cuba");
     rbtStrin.imprimirPorNiveles();
 
-    cout<<endl<<"RBT generico de Veiculos: "<< endl;
+    cout<<endl<<"RBT generico de Veiculos: "<<endl<<endl;
     arbolRB<Vehiculo> rbtVehivulos = arbolRB<Vehiculo>();
     rbtVehivulos.insert(carro1,"Brazil");
     rbtVehivulos.insert(carro2,"Argentina");
@@ -150,11 +147,13 @@ int main(){
     rbtVehivulos.insert(carro10,"Salvador");
     rbtVehivulos.insert(carro11,"Ecuador");
     rbtVehivulos.insert(carro12,"Cuba");
-
-    RBHash myHash(Vehiculo v);
-    myHash.arbol(rbtVehivulos);
-    myHash["toyota"] = carroToy;
-    Vehiculo* carro1997 = myHash["toyota"];
-    
     rbtVehivulos.imprimirPorNiveles();
+
+    RBHash<Vehiculo> myHash = RBHash<Vehiculo>();
+    arbolRB<Vehiculo>* temp = &rbtVehivulos;
+    myHash.arbol = temp;
+    cout<<endl<<"Nodo indexado desde el Hash: "<<myHash["Panama"]<<endl<<endl;
+    myHash["Alemania"];
+    rbtVehivulos.imprimirPorNiveles();
+    cout<<endl<<"Nodo insertado e indexado desde el Hash: "<<myHash["Alemania"]<<endl<<endl;
 }

@@ -10,3 +10,6 @@ Compilar Window:
 	g++ main.cpp -o Proyecto2
 Ejecutar Windows:
     Proyecto2.exe
+
+Se incluye un conjunto de pruebas con diferentes tipos de datos dentro del main, los resultados se mostraran en consola.
+Si necesita mas valores para las pruebas o necesita cambiar el orden simplemente dirijase al final del archivo main y realice las pruebas necesarias.

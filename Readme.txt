@@ -7,7 +7,7 @@ Estudiantes: Emmanuel Fallas Mena - C22846
 Para compilar ejecute el commando make en la terminal situado en la carpeta contenedora del proyecto o utilice los siguientes comandos en la misma terminal:
 
 Compilar Window:
-	g++ main.cpp -o Proyecto2
+	g++ Vehiculo.cpp  main.cpp -o Proyecto2
 Ejecutar Windows:
     Proyecto2.exe
 

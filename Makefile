@@ -1,5 +1,5 @@
 ifeq ($(OS),Windows_NT)
-    COMPILE = g++ main.cpp -o Proyecto2
+    COMPILE = g++ Vehiculo.cpp  main.cpp -o Proyecto2
 endif
 
 all:

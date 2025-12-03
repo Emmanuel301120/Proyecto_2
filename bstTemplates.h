@@ -61,6 +61,7 @@ public:
         if(inicio == nullptr){
             return true;
         }
+        return false;
     }
 
     int length(){
